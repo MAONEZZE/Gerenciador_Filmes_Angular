@@ -1,0 +1,6 @@
+i:hover{
+  border-radius: 5px;
+  opacity: 0.9;
+  cursor: pointer;
+  outline: 1px solid #8f620d;
+}

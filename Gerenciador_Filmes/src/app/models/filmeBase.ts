@@ -1,10 +1,10 @@
 export class FilmeBase{
-  id: number;
-  titulo: string;
-  descricao: string;
-  imgPoster: string;
+  id: any;
+  titulo: any;
+  descricao: any;
+  imgPoster: any;
 
-  constructor(id: number, titulo: string, descricao: string, imgPoster: string){
+  constructor(id: any, titulo: any, descricao: any, imgPoster: any){
     this.id = id;
     this.titulo = titulo;
     this.descricao = descricao;

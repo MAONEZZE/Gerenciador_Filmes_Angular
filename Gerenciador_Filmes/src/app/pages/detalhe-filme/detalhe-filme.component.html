@@ -1,0 +1,73 @@
+<section class="container d-grid gap-3 my-4">
+  <!-- Cabecalho -->
+  <div class="row">
+    <div class="d-flex align-items-center">
+      <h1 class="fs-1 fw-bold mb-3">{{ filme.titulo }}</h1>
+
+      <div class="ms-auto text-end">
+        <p class="text-light">{{ filme.totalVotos }}</p>
+        <i [class]="classeIcone" id="iconeCoracao" (click)="adicionarFavoritos()"></i>
+      </div>
+    </div>
+    <small class="text-light">{{ filme.dataLancamento }}</small>
+  </div>
+
+  <!-- Seção do Poster e Trailer -->
+  <div class="row gap-3">
+    <div class="border border-top border-warning"></div>
+    <div class="col-lg-3">
+      <img [src]="urlImg + filme.imgPoster" class="img-fluid rounded-3"/>
+    </div>
+    <div class="col-lg">
+      <div class="ratio ratio-21x9 h-100">
+        <ngb-carousel #carousel [interval]="5000">
+          <ng-template ngbSlide *ngFor="let t of treilers">
+            <div class="picsum-img-wrapper">
+              <iframe [src]="t" class="rounded-3 w-100 h-100 click-img modal-fullscreen"></iframe>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+    </div>
+  </div>
+  <div class="border border-bottom border-warning"></div>
+
+  <div class="container px-4 text-center">
+    <div class="row gx-5">
+      <div class="col-3">  
+        <div *ngFor="let genero of generos">
+          <div class="badge rounded-pill fs-5 bg-warning text-dark w-100 mb-2 d-flex justify-content-center">
+            <div class="row">
+              {{ genero}}
+            </div>
+          </div> 
+        </div>                    
+      </div>
+      <div class="col">
+        <h3 class="fs-1 fw-bold mb-2">Sinopse</h3>
+        <h4 class="text-light">{{ filme.descricao }}</h4>
+      </div>
+    </div>
+
+    <div class="border border-warning mt-4"></div>
+
+    <div class="row mt-4">
+      <div class="col">
+        <p class="fs-5 text-warning">Diretores</p>
+        <p class="fs-5 text-secondary">{{ creditoDiretor }}</p>
+      </div>
+      <div class="col">
+        <p class="fs-5 text-warning">Atores</p>
+        <p class="fs-5 text-secondary">{{ creditoAtores }}</p>
+      </div>
+      <div class="col">
+        <p class="fs-5 text-warning">Escritores</p>
+        <p class="fs-5 text-secondary">{{ creditoEscritores }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="border border-top border-warning"></div>
+  <h3 class="fs-1 fw-bold">Filmes Relacionados</h3>
+  <div id="divGridCard" class="row"></div>
+</section>

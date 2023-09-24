@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("bootstrap-icons/font/bootstrap-icons.min.css");
+
+body{
+  background: rgb(56, 31, 7);
+  background: radial-gradient(
+    circle,
+    rgb(71, 21, 0) 5%,
+    rgb(19, 5, 0) 80%
+  );
+}
+
+h1, h3{
+  background-image: linear-gradient(to right, #ffe600, #ff0000); 
+  -webkit-background-clip: text; 
+  color: transparent; 
+}

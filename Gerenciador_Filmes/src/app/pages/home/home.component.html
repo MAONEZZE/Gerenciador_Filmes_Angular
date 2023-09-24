@@ -1,0 +1,45 @@
+<section class="container d-grid gap-3 mt-4">
+  <h1 class="fs-1 fw-bold mb-3">Filmes Populares</h1>
+
+  <div class="row">
+    <div class="col">
+      <div class="card" style="width: 30rem; left: 0%;">
+        <div class="card bg-dark">
+          <ngb-carousel #carousel [interval]="1000" (slide)="slideCarrossel($event)">
+            <ng-template ngbSlide *ngFor="let filme of filmesCarrossel">
+              <div class="picsum-img-wrapper" [id]="filme.id">
+                <img [src]="urlImg + filme.imgPoster" class="d-block w-100"/>
+              </div>
+            </ng-template>
+          </ngb-carousel>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-7">
+  
+      <app-card-inicial></app-card-inicial>
+  
+      <div class="border-bottom border-warning mt-5"></div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-6 col-md-4 col-lg-2" *ngFor="let filme of filmesPopulares">
+      <div class="d-grid text-center">
+        <app-card-filme [filme]="filme"></app-card-filme>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-top border-warning mt-5"></div>
+  <h1 class="fs-1 fw-bold">Filmes em Cartaz</h1>
+
+  <app-filme-em-cartaz></app-filme-em-cartaz>
+
+  <div class="border-top border-warning mt-5"></div>
+  <h1 class="fs-1 fw-bold">Filmes mais Votados</h1>
+
+  <app-filme-mais-votados></app-filme-mais-votados>
+  
+</section>

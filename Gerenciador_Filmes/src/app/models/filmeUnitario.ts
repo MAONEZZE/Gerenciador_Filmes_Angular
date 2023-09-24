@@ -2,16 +2,16 @@ import { FilmeBase } from "./filmeBase";
 
 export class FilmeUnitario extends FilmeBase{
   videoTreiler: any;
-  dataLancamento: string;
-  mediaVotos: number;
-  totalVotos: number;
-  genero: string;
-  creditoAtores: string;
-  creditoTrabalhadores: string;
+  dataLancamento: any;
+  mediaVotos: any;
+  totalVotos: any;
+  genero: any;
+  creditoAtores: any;
+  creditoTrabalhadores: any;
 
-  constructor(id: number, titulo: string, descricao: string, imgPoster: string, imgBackdrop: string,
-    videoTreiler: any, dataLancamento: string, mediaVotos: number, totalVotos: number, genero: string,
-    creditoAtores: string, creditoTrabalhadores: string){
+  constructor(id: any, titulo: any, descricao: any, imgPoster: any, imgBackdrop: any,
+    videoTreiler: any, dataLancamento: any, mediaVotos: any, totalVotos: any, genero: any,
+    creditoAtores: any, creditoTrabalhadores: any){
 
     super(id, titulo, descricao, imgPoster);
     this.videoTreiler = videoTreiler;

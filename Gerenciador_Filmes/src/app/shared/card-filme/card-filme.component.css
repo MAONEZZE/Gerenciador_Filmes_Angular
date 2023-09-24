@@ -1,0 +1,6 @@
+#card:hover{
+  border-radius: 3px;
+  opacity: 0.9;
+  cursor: pointer;
+  outline: 1px solid #ffffff;
+}
