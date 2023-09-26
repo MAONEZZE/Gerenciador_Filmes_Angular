@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 import { Filme } from "../models/filme";
-import { API_KEY } from "../../secrets";
+import { environment } from "../../environments/environment";
 import { Observable, map } from "rxjs";
 import { FilmeUnitario } from "../models/filmeUnitario";
 import { FilmeBase } from "../models/filmeBase";
@@ -25,7 +25,7 @@ export class FilmeService{
       method: 'GET',
       headers: {
         accept: 'application/json',
-        Authorization: `Bearer ${API_KEY}`
+        Authorization: `Bearer ${environment.API_KEY}`
       }
     }
   }
@@ -82,5 +82,9 @@ export class FilmeService{
         map((dadosI: any): any[] => dadosI.results),
         map((dadosII: any[]): Filme[] => this.mapearFilmes(dadosII))
       );
+  }
+
+  public buscarFilmePorNome(nomeFilme: string): Observable<FilmeUnitario>{ //implementar aqui
+    return new Observable<FilmeUnitario>();
   }
 }

@@ -5,7 +5,7 @@
     <div class="col">
       <div class="card" style="width: 30rem; left: 0%;">
         <div class="card bg-dark">
-          <ngb-carousel #carousel [interval]="1000" (slide)="slideCarrossel($event)">
+          <ngb-carousel #carousel [interval]="4000" (slide)="slideCarrossel($event)">
             <ng-template ngbSlide *ngFor="let filme of filmesCarrossel">
               <div class="picsum-img-wrapper" [id]="filme.id">
                 <img [src]="urlImg + filme.imgPoster" class="d-block w-100"/>
@@ -18,7 +18,7 @@
   
     <div class="col-7">
   
-      <app-card-inicial></app-card-inicial>
+      <app-card-inicial [filme]="filmeCard"></app-card-inicial>
   
       <div class="border-bottom border-warning mt-5"></div>
     </div>
@@ -35,11 +35,11 @@
   <div class="border-top border-warning mt-5"></div>
   <h1 class="fs-1 fw-bold">Filmes em Cartaz</h1>
 
-  <app-filme-em-cartaz></app-filme-em-cartaz>
+  <app-filme-em-cartaz [filmesEmCartaz]="filmesEmCartaz"></app-filme-em-cartaz>
 
   <div class="border-top border-warning mt-5"></div>
   <h1 class="fs-1 fw-bold">Filmes mais Votados</h1>
 
-  <app-filme-mais-votados></app-filme-mais-votados>
+  <app-filme-mais-votados [ehRelacionado]="false" [filmesMaisVotados]="filmesMaisVotados"></app-filme-mais-votados>
   
 </section>

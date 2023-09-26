@@ -12,26 +12,33 @@ import { FilmeService } from 'src/app/services/filme.service';
   templateUrl: './listar-filmes.component.html',
   styleUrls: ['./listar-filmes.component.css']
 })
-export class ListarFilmesComponent{
-  private tipo: string;
+export class ListarFilmesComponent implements OnInit{
+  private tipo: string = '';
   public tipoDeFilme: string = '';
   public filmes: FilmeBase[] = [];
 
-  constructor(private route: ActivatedRoute, private filmeService: FilmeService, private filmeFavoritoService: FilmeFavoritoService){
-    this.tipo = this.route.snapshot.paramMap.get('str')!;
+  constructor(private route: ActivatedRoute, private filmeService: FilmeService, private filmeFavoritoService: FilmeFavoritoService){}
+  
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((parametros) =>{
+      this.tipo = parametros.get('str')!;
 
-    this.verificadorDeFilme();
-
-    if(this.tipo != 'favoritos'){
-      this.buscarFilme(this.tipo)
-    }
-    else{
-      this.buscarFavoritos();
-    }
+      this.verificadorDeFilme();
+  
+      if(this.tipo != 'favoritos'){
+        this.buscarFilme(this.tipo)
+      }
+      else{
+        this.buscarFavoritos();
+      }
+    } );
+    //snapshot carrega uma vez so
   }
 
   private buscarFavoritos(){
     const arrayIdFilmeFav = this.filmeFavoritoService.obterListaFav();
+
+    this.filmes = [];
     
     for (let i = 0; i < arrayIdFilmeFav.length; i++){
       this.filmeService.buscarFilmesPorId(arrayIdFilmeFav[i].id).subscribe((filme: FilmeUnitario) => {

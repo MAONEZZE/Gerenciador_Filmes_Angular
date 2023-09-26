@@ -14,10 +14,4 @@ export class CardInicialComponent {
   constructor(){
     this.filme = new Filme(0, '', '', '', '');
   }
-
-  receberFilme(filme: any) {
-    this.filme = filme; // Captura o objeto do filme passado pelo emissor
-    console.log('Filme Recebido:', this.filme);
-  }
-  
 }

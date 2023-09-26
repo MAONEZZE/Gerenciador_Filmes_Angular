@@ -29,8 +29,8 @@
           <a class="nav-link active text-secondary" aria-current="page" routerLink="listar-filme/favoritos">Favoritos</a>
         </li>
       </ul>
-      <form id="formBuscar" class="d-flex" role="search">
-        <input id="inputBuscar" class="form-control me-2" type="search" placeholder="Procure por um Filme!" aria-label="Search">
+      <form (submit)="enviarTitulo()" class="d-flex">
+        <input [(ngModel)]="tituloFilme" name="titulo" class="form-control me-2" type="text" placeholder="Procure por um Filme!"/>
         <button class="btn btn-outline-success" type="submit">Buscar</button>
       </form>
     </div>

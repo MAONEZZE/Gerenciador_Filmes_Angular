@@ -16,18 +16,16 @@
   <div class="row gap-3">
     <div class="border border-top border-warning"></div>
     <div class="col-lg-3">
-      <img [src]="urlImg + filme.imgPoster" class="img-fluid rounded-3"/>
+      <img [src]="urlImg + filme.imgPoster" class="img-fluid rounded-3 w-100 h-100"/>
     </div>
     <div class="col-lg">
-      <div class="ratio ratio-21x9 h-100">
-        <ngb-carousel #carousel [interval]="5000">
-          <ng-template ngbSlide *ngFor="let t of treilers">
-            <div class="picsum-img-wrapper">
-              <iframe [src]="t" class="rounded-3 w-100 h-100 click-img modal-fullscreen"></iframe>
-            </div>
-          </ng-template>
-        </ngb-carousel>
-      </div>
+      <ngb-carousel #carousel [interval]="10000">
+        <ng-template ngbSlide *ngFor="let t of treilers">
+          <div class="picsum-img-wrapper w-100 h-100 ratio ratio-16x9">
+            <iframe [src]="t" class="rounded-3"></iframe>
+          </div>
+        </ng-template>
+      </ngb-carousel>
     </div>
   </div>
   <div class="border border-bottom border-warning"></div>
@@ -69,5 +67,6 @@
 
   <div class="border border-top border-warning"></div>
   <h3 class="fs-1 fw-bold">Filmes Relacionados</h3>
-  <div id="divGridCard" class="row"></div>
+
+  <app-filme-mais-votados [ehRelacionado]="true"></app-filme-mais-votados>
 </section>

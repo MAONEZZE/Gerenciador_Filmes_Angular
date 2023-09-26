@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { FilmeService } from 'src/app/services/filme.service';
   templateUrl: './detalhe-filme.component.html',
   styleUrls: ['./detalhe-filme.component.css']
 })
-export class DetalheFilmeComponent{
+export class DetalheFilmeComponent implements OnInit{
   public urlImg = 'https://image.tmdb.org/t/p/original';
   public urlTreiler = 'https://www.youtube.com/embed/';
   public ehFavorito: boolean = false;
@@ -26,11 +26,24 @@ export class DetalheFilmeComponent{
 
   constructor(private sanitizer: DomSanitizer, private filmeService: FilmeService, private route: ActivatedRoute, private filmeFavoritoService: FilmeFavoritoService){
     this.filme = new FilmeUnitario(0, '', '', '', '', '', '', 0, 0, '', '', '');
-    this.buscarPorId();
+  }
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((parametro) => {
+      this.treilers = [];
+      this.generos = [];
+      this.creditoDiretor = '';
+      this.creditoEscritores = '';
+      this.creditoAtores = '';
+
+      const id = parametro.get('id')!;
+
+      this.buscarPorId(id);
+      this.verificarSeEhFavorito(id);
+    });
   }
 
   adicionarFavoritos(){
-    console.log('as')
     if(this.classeIcone.includes('bi-heart')){
       this.classeIcone.replace('bi-heart', 'bi-heart-fill');
     }
@@ -41,9 +54,12 @@ export class DetalheFilmeComponent{
     const id = this.route.snapshot.paramMap.get('id')!;
 
     this.filmeFavoritoService.favoritar(id);
+
+    this.verificarSeEhFavorito(id);
   }
 
-  public verificarSeEhFavorito(){
+  public verificarSeEhFavorito(id: string){
+    this.ehFavorito = this.filmeFavoritoService.verificaFav(id);
     if(this.ehFavorito){
       this.classeIcone = "bi bi-heart-fill fs-2 text-warning"
     }
@@ -70,16 +86,10 @@ export class DetalheFilmeComponent{
     }
   }
 
-  buscarPorId(){
-    const id = this.route.snapshot.paramMap.get('id')!
-
-    this.ehFavorito = this.filmeFavoritoService.verificaFav(id);
-    this.verificarSeEhFavorito();
+  buscarPorId(id: string){
 
     this.filmeService.buscarFilmesPorId(id).subscribe((filme: FilmeUnitario) => {
       this.filme = filme;
-
-      
 
       for(let i = 0; i < filme.genero.length; i++){
         this.generos.push(filme.genero[i].name);

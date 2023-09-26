@@ -10,6 +10,7 @@ import { FilmeBase } from 'src/app/models/filmeBase';
 })
 export class CardFilmeComponent{
   public urlImg = 'https://image.tmdb.org/t/p/original';
+  @Input() ehRelacionado: boolean = false;
   @Input() filme: FilmeBase;
   @Output() onClickFilme: EventEmitter<Filme>;
 

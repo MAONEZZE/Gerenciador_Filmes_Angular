@@ -10,16 +10,26 @@ import { FilmeService } from 'src/app/services/filme.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent{
+export class HomeComponent implements OnInit{
   public urlImg = 'https://image.tmdb.org/t/p/original';
+  public filmeCard: Filme;
   @Input() filmes: Filme[] = [];
   @Output() onSlideCarrossel: EventEmitter<Filme>;
+
   filmesPopulares: Filme[] = [];
+  filmesEmCartaz: Filme[] = [];
+  filmesMaisVotados: Filme[] = [];
   filmesCarrossel: Filme[] = [];
   
   constructor(private filmeService: FilmeService){
     this.onSlideCarrossel = new EventEmitter();
+    this.filmeCard = new Filme(0, '', '', '', '');
+  }
+  
+  ngOnInit(): void {
     this.buscarPopulares();
+    this.buscarEmCartaz();
+    this.buscarMaisVotados();
   }
 
   private buscarPopulares(){
@@ -31,6 +41,24 @@ export class HomeComponent{
           this.filmesCarrossel.push(filmes[i]);
         }
       }
+      
+      this.filmeCard = this.filmesPopulares[0];
+    });
+  }
+
+  private buscarEmCartaz(){
+    this.filmeService.buscarFilmes('upcoming').subscribe((filmes: Filme[]) => {
+      for(let i=0; i < 12; i++){
+        this.filmesEmCartaz.push(filmes[i])
+      }
+    });
+  }
+
+  private buscarMaisVotados(){
+    this.filmeService.buscarFilmes('top_rated').subscribe((filmes: Filme[]) => {
+      for(let i=0; i < 12; i++){
+        this.filmesMaisVotados.push(filmes[i])
+      }
     });
   }
 
@@ -40,6 +68,6 @@ export class HomeComponent{
 
     const filme = this.filmesCarrossel[index];
 
-    this.onSlideCarrossel.emit(filme);
+    this.filmeCard = filme;
   }
 }
