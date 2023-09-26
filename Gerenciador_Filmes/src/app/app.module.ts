@@ -15,6 +15,8 @@ import { CardInicialComponent } from './shared/card-inicial/card-inicial.compone
 import { FilmeEmCartazComponent } from './shared/filme-em-cartaz/filme-em-cartaz.component';
 import { FilmeMaisVotadosComponent } from './shared/filme-mais-votados/filme-mais-votados.component';
 import { ListarFilmesPesquisadosComponent } from './pages/listar-filmes-pesquisados/listar-filmes-pesquisados.component';
+import { CardFilmePesquisaComponent } from './shared/card-filme-pesquisa/card-filme-pesquisa.component';
+
 
 @NgModule({
   declarations: [
@@ -27,14 +29,15 @@ import { ListarFilmesPesquisadosComponent } from './pages/listar-filmes-pesquisa
     CardInicialComponent,
     FilmeEmCartazComponent,
     FilmeMaisVotadosComponent,
-    ListarFilmesPesquisadosComponent
+    ListarFilmesPesquisadosComponent,
+    CardFilmePesquisaComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     NgbModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]

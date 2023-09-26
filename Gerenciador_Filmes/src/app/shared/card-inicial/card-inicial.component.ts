@@ -9,9 +9,6 @@ import { Filme } from 'src/app/models/filme';
 })
 export class CardInicialComponent {
   public urlImg = 'https://image.tmdb.org/t/p/original';
-  @Input() filme: Filme;
-
-  constructor(){
-    this.filme = new Filme(0, '', '', '', '');
-  }
+  @Input() index: number = 0;
+  @Input() filmes: Filme[] = [];
 }

@@ -31,7 +31,7 @@ export class ListarFilmesComponent implements OnInit{
       else{
         this.buscarFavoritos();
       }
-    } );
+    });
     //snapshot carrega uma vez so
   }
 

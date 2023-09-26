@@ -1,0 +1,24 @@
+.borda{
+  border: 2px solid rgb(139, 64, 3);
+  width: 93%;
+}
+
+.fundo-card{
+  background: rgb(56, 31, 7);
+  background: radial-gradient(
+    circle,
+    rgb(190, 190, 190) 5%,
+    rgb(143, 143, 143) 80%
+  );
+}
+
+.titulo-cards{
+  color: rgb(49, 14, 1);
+}
+
+#card:hover{
+  border-radius: 3px;
+  opacity: 0.9;
+  cursor: pointer;
+  outline: 1px solid #ffffff;
+}

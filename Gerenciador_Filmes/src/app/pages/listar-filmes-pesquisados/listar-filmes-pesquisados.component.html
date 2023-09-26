@@ -2,7 +2,7 @@
   <div class="d-flex justify-content-center">
     <h1>Título pesquisado: {{titulo}}</h1>
   </div>
-  <div class="row">
-    <div class="card h-100 w-100"></div>
+  <div class="row" *ngFor="let filme of filmes">
+    <app-card-filme-pesquisa [filme]="filme"></app-card-filme-pesquisa>
   </div>
 </section>

@@ -14,6 +14,7 @@ import { FilmeBase } from "../models/filmeBase";
 export class FilmeService{
   private listaFilmesGerais: Filme[] = [];
   private urlBusca: string = 'https://api.themoviedb.org/3/movie/';
+  private urlBuscaPorTitulo: string = 'https://api.themoviedb.org/3/search/movie?query=';
   private http: HttpClient;
 
   constructor(http: HttpClient){
@@ -84,7 +85,12 @@ export class FilmeService{
       );
   }
 
-  public buscarFilmePorNome(nomeFilme: string): Observable<FilmeUnitario>{ //implementar aqui
-    return new Observable<FilmeUnitario>();
+  public buscarFilmePorNome(nomeFilme: string): Observable<Filme[]>{ //implementar aqui
+    return this.http
+      .get<any>(`${this.urlBuscaPorTitulo}${nomeFilme}`, this.obterHeader())
+      .pipe(
+        map((dadosI: any): any[] => dadosI.results),
+        map((dadosII: any[]): Filme[] => this.mapearFilmes(dadosII))
+      );
   }
 }

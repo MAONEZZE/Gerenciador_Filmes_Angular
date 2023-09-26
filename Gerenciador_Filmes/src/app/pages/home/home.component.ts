@@ -13,17 +13,22 @@ import { FilmeService } from 'src/app/services/filme.service';
 export class HomeComponent implements OnInit{
   public urlImg = 'https://image.tmdb.org/t/p/original';
   public filmeCard: Filme;
+  public indexCardCarrossel: number = 0;
   @Input() filmes: Filme[] = [];
   @Output() onSlideCarrossel: EventEmitter<Filme>;
 
-  filmesPopulares: Filme[] = [];
-  filmesEmCartaz: Filme[] = [];
-  filmesMaisVotados: Filme[] = [];
-  filmesCarrossel: Filme[] = [];
+  filmesPopulares: Filme[];
+  filmesEmCartaz: Filme[];
+  filmesMaisVotados: Filme[];
+  filmesCarrossel: Filme[];
   
   constructor(private filmeService: FilmeService){
     this.onSlideCarrossel = new EventEmitter();
     this.filmeCard = new Filme(0, '', '', '', '');
+    this.filmesPopulares = [];
+    this.filmesEmCartaz = [];
+    this.filmesMaisVotados = [];
+    this.filmesCarrossel = [];
   }
   
   ngOnInit(): void {
@@ -64,9 +69,9 @@ export class HomeComponent implements OnInit{
 
   public slideCarrossel(event: NgbSlideEvent){
     const evento: string = event.current;
-    const index: number = parseInt(evento.substring(evento.length - 1, evento.length))
+    this.indexCardCarrossel = parseInt(evento.substring(evento.length - 1, evento.length))
 
-    const filme = this.filmesCarrossel[index];
+    const filme = this.filmesCarrossel[this.indexCardCarrossel];
 
     this.filmeCard = filme;
   }
