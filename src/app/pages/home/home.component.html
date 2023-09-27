@@ -3,9 +3,9 @@
 
   <div class="row">
     <div class="col">
-      <div class="card" style="width: 30rem; left: 0%;">
+      <div class="card">
         <div class="card bg-dark">
-          <ngb-carousel #carousel [interval]="4000" (slide)="slideCarrossel($event)">
+          <ngb-carousel #carousel [interval]="1000" (slide)="slideCarrossel($event)">
             <ng-template ngbSlide *ngFor="let filme of filmesCarrossel">
               <div class="picsum-img-wrapper">
                 <img [src]="urlImg + filme.imgPoster" class="d-block w-100"/>
@@ -20,7 +20,7 @@
   
       <app-card-inicial [index]="indexCardCarrossel" [filmes]="filmesCarrossel"></app-card-inicial>
   
-      <div class="border-bottom border-warning mt-5"></div>
+      <div class="border-bottom border-warning mt-4"></div>
     </div>
   </div>
   
