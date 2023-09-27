@@ -19,6 +19,7 @@ export class NavbarComponent {
     if(this.tituloFilme != ''){
       this.onBuscarPorTitulo.emit(this.tituloFilme);
       this.router.navigate(['/listar-filme-pesquisado', this.tituloFilme])
+      this.tituloFilme = '';
     }
   }
 }
