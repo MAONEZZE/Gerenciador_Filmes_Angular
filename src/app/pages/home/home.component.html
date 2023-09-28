@@ -1,29 +1,25 @@
 <section class="container d-grid gap-3 mt-4">
-  <h1 class="fs-1 fw-bold mb-3">Filmes Populares</h1>
+  <h1 class="fs-1 fw-bold mb-3">Filmes em Alta</h1>
 
   <div class="row">
-    <div class="col">
-      <div class="card">
-        <div class="card bg-dark">
-          <ngb-carousel #carousel [interval]="4000" (slide)="slideCarrossel($event)">
-            <ng-template ngbSlide *ngFor="let filme of filmesCarrossel">
-              <div class="picsum-img-wrapper">
-                <img [src]="urlImg + filme.imgPoster" class="d-block w-100"/>
-              </div>
-            </ng-template>
-          </ngb-carousel>
-        </div>
-      </div>
+    <div class="col mb-3">
+      <ngb-carousel #carousel [interval]="4000">
+        <ng-template ngbSlide *ngFor="let filme of filmesCarrossel">
+          <div class="picsum-img-wrapper">
+            <img [ngSrc]="urlImg + filme.imgBackdrop" width="180" height="650" class="w-100 rounded-3"/>
+          </div>
+          <div class="card-body carousel-caption corpo-card">
+            <h3>{{ filme.titulo }}</h3>
+            <p>{{ filme.descricao }}</p>
+          </div>
+        </ng-template>
+      </ngb-carousel>
     </div>
-  
-    <div class="col-7">
-  
-      <app-card-inicial [index]="indexCardCarrossel" [filmes]="filmesCarrossel"></app-card-inicial>
-  
-      <div class="border-bottom border-warning mt-4"></div>
-    </div>
+    
   </div>
   
+  <h1 class="fs-1 fw-bold mb-3">Filmes Populares</h1>
+
   <div class="row">
     <div class="col-6 col-md-4 col-lg-2" *ngFor="let filme of filmesPopulares">
       <div class="d-grid text-center">
@@ -43,3 +39,6 @@
   <app-filme-mais-votados [ehRelacionado]="false" [filmesMaisVotados]="filmesMaisVotados"></app-filme-mais-votados>
   
 </section>
+<footer class="rodape mt-5 border-top border-warning p-2">
+  <i class="bi bi-github text-light click-icon fs-4" (click)="redirecionarUser()"></i>
+</footer>

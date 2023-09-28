@@ -1,0 +1,42 @@
+.borda-img{
+  border: solid 1px rgb(235, 160, 0);
+}
+
+.rodape{
+  background: rgba(20, 20, 20, 0.712);
+  background: radial-gradient(
+    circle,
+    rgba(29, 29, 29, 0.74) 5%,
+    rgba(8, 8, 8, 0.534) 80%
+  );
+  padding: 20px; 
+  text-align: center; 
+}
+
+.corpo-card{
+  background: rgba(20, 20, 20, 0.712);
+  background: radial-gradient(
+    circle,
+    rgba(49, 49, 49, 0.815) 5%,
+    rgba(0, 0, 0, 0.637) 80%
+  ); 
+
+  height: 160px; /* Ajuste a altura do retângulo conforme necessário */
+  width: 100%;
+  bottom: 0;
+  left: 0;
+
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top: 2px solid rgb(255, 153, 0);
+
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+
+  opacity: 0.9;
+}
+
+.click-icon:hover{
+  cursor: pointer;
+}

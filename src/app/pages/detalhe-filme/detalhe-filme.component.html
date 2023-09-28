@@ -16,7 +16,7 @@
   <div class="row gap-3">
     <div class="border border-top border-warning"></div>
     <div class="col-lg-3">
-      <img [src]="urlImg + filme.imgPoster" class="img-fluid rounded-3 w-100 h-100"/>
+      <img [ngSrc]="urlImg + filme.imgPoster" width="200" height="200" class="img-fluid rounded-3 w-100 h-100"/>
     </div>
     <div class="col-lg">
       <ngb-carousel #carousel [interval]="10000">

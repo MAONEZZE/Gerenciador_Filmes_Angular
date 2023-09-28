@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit{
   public urlImg = 'https://image.tmdb.org/t/p/original';
   public filmeCard: Filme;
   public indexCardCarrossel: number = 0;
+
   @Input() filmes: Filme[] = [];
   @Output() onSlideCarrossel: EventEmitter<Filme>;
 
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit{
   filmesMaisVotados: Filme[];
   filmesCarrossel: Filme[];
   
-  constructor(private filmeService: FilmeService){
+  constructor(private filmeService: FilmeService, private router: Router){
     this.onSlideCarrossel = new EventEmitter();
     this.filmeCard = new Filme(0, '', '', '', '');
     this.filmesPopulares = [];
@@ -42,7 +43,7 @@ export class HomeComponent implements OnInit{
       for(let i=0; i < 12; i++){
         this.filmesPopulares.push(filmes[i])
 
-        if(i < 7 && filmes[i].id != 762430){
+        if(i < 8 && filmes[i].id != 762430 && filmes[i].id != 385687){
           this.filmesCarrossel.push(filmes[i]);
         }
       }
@@ -67,12 +68,20 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  public slideCarrossel(event: NgbSlideEvent){
-    const evento: string = event.current;
-    this.indexCardCarrossel = parseInt(evento.substring(evento.length - 1, evento.length))
-
-    const filme = this.filmesCarrossel[this.indexCardCarrossel];
-
-    this.filmeCard = filme;
+  redirecionarUser(){
+    const urlGitHub = 'https://github.com/MAONEZZE'; // URL do Google ou outra URL externa
+    window.open(urlGitHub, '_blank');
   }
+
+  // public slideCarrossel(event: NgbSlideEvent){
+  //   const evento: string = event.current;
+
+  //   const array: string[] = evento.split('-');
+
+  //   this.indexCardCarrossel = parseInt(array[2]);
+
+  //   const filme = this.filmesCarrossel[this.indexCardCarrossel];
+
+  //   this.filmeCard = filme;
+  // }
 }

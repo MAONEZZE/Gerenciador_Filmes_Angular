@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { DetalheFilmeComponent } from './pages/detalhe-filme/detalhe-filme.component';
 import { ListarFilmesComponent } from './pages/listar-filmes/listar-filmes.component';
+
 import { ListarFilmesPesquisadosComponent } from './pages/listar-filmes-pesquisados/listar-filmes-pesquisados.component';
 
 
