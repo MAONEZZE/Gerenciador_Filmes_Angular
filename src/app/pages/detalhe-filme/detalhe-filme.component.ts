@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import { FilmeUnitario } from 'src/app/models/filmeUnitario';
 import { FilmeFavoritoService } from 'src/app/services/filme-favorito.service';
@@ -24,7 +25,13 @@ export class DetalheFilmeComponent implements OnInit{
   public creditoEscritores: string = '';
   public creditoAtores: string = '';
 
-  constructor(private sanitizer: DomSanitizer, private filmeService: FilmeService, private route: ActivatedRoute, private filmeFavoritoService: FilmeFavoritoService){
+  constructor(
+    private sanitizer: DomSanitizer, 
+    private filmeService: FilmeService, 
+    private route: ActivatedRoute, 
+    private filmeFavoritoService: FilmeFavoritoService, 
+    private toastService: ToastrService){
+      
     this.filme = new FilmeUnitario(0, '', '', '', '', '', '', 0, 0, '', '', '');
   }
 
@@ -46,15 +53,17 @@ export class DetalheFilmeComponent implements OnInit{
   adicionarFavoritos(){
     if(this.classeIcone.includes('bi-heart')){
       this.classeIcone.replace('bi-heart', 'bi-heart-fill');
+      this.toastService.success('Filme adicionado aos favoritos!', 'Favoritos');
     }
     else{
       this.classeIcone.replace('bi-heart-fill', 'bi-heart');
+      this.toastService.error('Filme removido dos favoritos!', 'Favoritos');
     }
 
     const id = this.route.snapshot.paramMap.get('id')!;
 
     this.filmeFavoritoService.favoritar(id);
-
+    
     this.verificarSeEhFavorito(id);
   }
 

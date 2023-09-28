@@ -16,6 +16,7 @@ import { FilmeEmCartazComponent } from './shared/filme-em-cartaz/filme-em-cartaz
 import { FilmeMaisVotadosComponent } from './shared/filme-mais-votados/filme-mais-votados.component';
 import { ListarFilmesPesquisadosComponent } from './pages/listar-filmes-pesquisados/listar-filmes-pesquisados.component';
 import { CardFilmePesquisaComponent } from './shared/card-filme-pesquisa/card-filme-pesquisa.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -37,7 +38,13 @@ import { CardFilmePesquisaComponent } from './shared/card-filme-pesquisa/card-fi
     NgbModule,
     AppRoutingModule,
     HttpClientModule, 
-    NgOptimizedImage
+    NgOptimizedImage,
+
+    ToastrModule.forRoot({//Injeta os serviços em todos os componentes
+      timeOut: 5000,
+      positionClass: 'toast-bottom-right',
+      //preventDuplicates: true, -> acso vc faça muitas ações isso evita que apareça um monte de toasts
+    }),
 
   ],
   providers: [],
